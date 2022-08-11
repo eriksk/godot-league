@@ -12,9 +12,10 @@ extents = Vector3( 1.009, 0.801, 2.297 )
 radius = 0.5
 
 [node name="RigidBody" type="RigidBody"]
+mass = 50.0
+linear_damp = 0.0
+angular_damp = 0.0
 script = ExtResource( 4 )
-steer_speed = 15.0
-acceleration = 50.0
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1798, 0.182501 )
