@@ -11,7 +11,7 @@
 [node name="Cars" type="Node" parent="."]
 
 [node name="Car" parent="Cars" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.105268, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.54884, 0 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 0.835712, -0.329609, 0.439254, 0, 0.799852, 0.600197, -0.549169, -0.501592, 0.668446, 4.15464, 10.6633, 12.2615 )
