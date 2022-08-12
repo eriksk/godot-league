@@ -12,7 +12,7 @@ extents = Vector3( 1.009, 0.801, 2.297 )
 radius = 0.5
 
 [node name="RigidBody" type="RigidBody"]
-physics_interpolation_mode = 2
+collision_layer = 2
 mass = 50.0
 linear_damp = 0.0
 angular_damp = 0.0
