@@ -12,5 +12,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 material/0 = ExtResource( 1 )
 
 [node name="GroundRay" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
 enabled = true
-cast_to = Vector3( 0, -0.75, 0 )
+exclude_parent = false
+cast_to = Vector3( 0, -1.5, 0 )

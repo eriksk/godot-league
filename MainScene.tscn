@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Maps/Map.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Cars/Car.tscn" type="PackedScene" id=2]
 [ext_resource path="res://default_env.tres" type="Environment" id=3]
 [ext_resource path="res://Scripts/Cameras/GameplayCamera.gd" type="Script" id=4]
 [ext_resource path="res://Balls/Ball.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scripts/UI/DebugUI.gd" type="Script" id=6]
 
 [node name="MainScene" type="Spatial"]
 
@@ -27,3 +28,43 @@ fov = 90.0
 far = 1000.0
 script = ExtResource( 4 )
 target_node = NodePath("../Cars/Car")
+ball_target_node = NodePath("../Balls/Ball")
+height = 5.0
+distance = 10.0
+min_height = 0.0
+
+[node name="DebugUI" type="Node" parent="."]
+script = ExtResource( 6 )
+car_path = NodePath("../Cars/Car")
+front_left_wheel_grounded_path = NodePath("front_left_wheel")
+front_right_wheel_grounded_path = NodePath("front_right_wheel")
+back_left_wheel_grounded_path = NodePath("back_left_wheel")
+back_right_wheel_grounded_path = NodePath("back_right_wheel")
+
+[node name="front_left_wheel" type="Label" parent="DebugUI"]
+margin_left = 40.0
+margin_top = 34.0
+margin_right = 131.0
+margin_bottom = 48.0
+text = "front_left: true"
+
+[node name="front_right_wheel" type="Label" parent="DebugUI"]
+margin_left = 170.0
+margin_top = 34.0
+margin_right = 261.0
+margin_bottom = 48.0
+text = "front_left: true"
+
+[node name="back_left_wheel" type="Label" parent="DebugUI"]
+margin_left = 40.0
+margin_top = 71.0
+margin_right = 131.0
+margin_bottom = 85.0
+text = "front_left: true"
+
+[node name="back_right_wheel" type="Label" parent="DebugUI"]
+margin_left = 170.0
+margin_top = 71.0
+margin_right = 261.0
+margin_bottom = 85.0
+text = "front_left: true"

@@ -1,13 +1,26 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Models/Balls/ball.scn" type="PackedScene" id=1]
+[ext_resource path="res://Balls/Ball_psx_mat.tres" type="PhysicsMaterial" id=2]
+[ext_resource path="res://Balls/Ball_Mat.tres" type="Material" id=3]
+[ext_resource path="res://Models/Balls/ball_lights.scn" type="PackedScene" id=4]
+[ext_resource path="res://Balls/Ball_Lights_Mat.tres" type="Material" id=5]
 
 [sub_resource type="SphereShape" id=1]
-radius = 2.0
+radius = 3.0
 
 [node name="Ball" type="RigidBody"]
+physics_material_override = ExtResource( 2 )
+continuous_cd = true
+can_sleep = false
+linear_damp = 0.025
+angular_damp = 0.1
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 1 )
 
 [node name="ball" parent="." instance=ExtResource( 1 )]
+material/0 = ExtResource( 3 )
+
+[node name="ball_lights" parent="." instance=ExtResource( 4 )]
+material/0 = ExtResource( 5 )

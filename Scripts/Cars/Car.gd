@@ -1,9 +1,12 @@
 extends RigidBody
 
+class_name Car
+
 onready var wheel_front_left: Wheel = $Car/BottomPlate/Wheel_Front_Left
 onready var wheel_front_right: Wheel = $Car/BottomPlate/Wheel_Front_Right
 onready var wheel_back_left: Wheel = $Car/BottomPlate/Wheel_Back_Left
 onready var wheel_back_right: Wheel = $Car/BottomPlate/Wheel_Back_Right
+onready var surface_raycast: RayCast = $surface_raycast
 
 export var max_steer_angle_degrees: float = 35.0
 export var acceleration: float = 50.0
@@ -13,6 +16,8 @@ export var angular_damping: float = 10
 export var roll_speed: float = 50.0
 export var ground_steer_speed: float = 25.0
 export var boost_force: float = 5.0
+export var down_force = 10.0 # this is extra gravity when grounded
+export var max_speed = 20.0
 
 var left_right: float = 0.0
 var up_down: float = 0.0
@@ -84,6 +89,11 @@ func _integrate_forces(state):
 		# steering
 		state.add_torque(transform.basis.y * left_right * ground_steer_speed * mass)
 
+	if wheels_grounded > 0 and not all_wheels_grounded:
+		add_stability_down_torque(state)
+	if all_wheels_grounded:
+		add_stability_down_force(state)
+
 	# air drag
 	state.add_central_force(-state.linear_velocity * air_drag * mass)
 	# torque damping
@@ -91,7 +101,31 @@ func _integrate_forces(state):
 	# boost
 	if boost:
 		state.add_central_force(transform.basis.z * boost_force * mass)
-	
+		
+	if all_wheels_grounded:
+		clamp_to_max_speed(state)
+
+func clamp_to_max_speed(state):
+	var velocity = state.linear_velocity
+	if velocity.length() > max_speed:
+		state.linear_velocity = state.linear_velocity.normalized() * max_speed
+
+func add_stability_down_torque(state):
+	var up = surface_raycast.get_collision_normal()
+	var forward_dot = (-transform.basis.z).dot(up)
+	var right_dot = (-transform.basis.x).dot(up)
+
+	var down_force_torque = 150.0
+
+	var right = -transform.basis.x
+	var forward = transform.basis.z
+
+	# Apply torque in local space
+	state.add_torque(right * forward_dot * down_force_torque * mass)
+	state.add_torque(forward * right_dot * down_force_torque * mass)
+
+func add_stability_down_force(state):
+	state.add_central_force(-transform.basis.y * down_force * mass)
 
 func apply_air_rolls(state):
 	# roll
