@@ -40,6 +40,7 @@ front_left_wheel_grounded_path = NodePath("front_left_wheel")
 front_right_wheel_grounded_path = NodePath("front_right_wheel")
 back_left_wheel_grounded_path = NodePath("back_left_wheel")
 back_right_wheel_grounded_path = NodePath("back_right_wheel")
+speed_path = NodePath("speed")
 
 [node name="front_left_wheel" type="Label" parent="DebugUI"]
 margin_left = 40.0
@@ -68,3 +69,10 @@ margin_top = 71.0
 margin_right = 261.0
 margin_bottom = 85.0
 text = "front_left: true"
+
+[node name="speed" type="Label" parent="DebugUI"]
+margin_left = 40.0
+margin_top = 122.0
+margin_right = 131.0
+margin_bottom = 136.0
+text = "100"
