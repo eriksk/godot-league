@@ -101,6 +101,9 @@ boost={
 
 3d/smooth_trimesh_collision=true
 common/enable_pause_aware_picking=true
+3d/active_soft_world=false
+3d/default_linear_damp=0.0
+3d/default_angular_damp=0.0
 
 [rendering]
 

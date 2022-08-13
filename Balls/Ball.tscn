@@ -14,7 +14,7 @@ physics_material_override = ExtResource( 2 )
 continuous_cd = true
 can_sleep = false
 linear_damp = 0.025
-angular_damp = 0.1
+angular_damp = 0.25
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 1 )
